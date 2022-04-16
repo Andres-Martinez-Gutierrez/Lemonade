@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         setViewElements()
         lemonImage!!.setOnClickListener {
             // TODO: llamar al método que maneja el estado cuando se hace clic en la imagen
+            clickLemonImage()
 
         }
         lemonImage!!.setOnLongClickListener {
@@ -121,6 +122,7 @@ class MainActivity : AppCompatActivity() {
                     lemonadeState = DRINK
                     lemonSize = -1
                 }
+                showSnackbar()
             }
             DRINK ->{
                 // TODO: Cuando se hace clic en la imagen en el estado DRINK, el estado debe convertirse en RESTART
@@ -134,7 +136,7 @@ class MainActivity : AppCompatActivity() {
             // TODO: por último, antes de que termine la función, debemos configurar los elementos de vista para que el
             // La interfaz de usuario puede reflejar el estado correct
         }
-        Log.d("Estado", lemonadeState)
+        setViewElements()
     }
 
 
@@ -153,16 +155,20 @@ class MainActivity : AppCompatActivity() {
         // pero recuerda que son dibujables, no cadenas.
         when(lemonadeState){
             SELECT -> {
-
+                textAction.text = resources.getString(R.string.lemon_select)
+                lemonImage?.setImageResource(R.drawable.lemon_tree)
             }
             SQUEEZE ->{
-
+                textAction.text = resources.getString(R.string.lemon_squeeze)
+                lemonImage?.setImageResource(R.drawable.lemon_squeeze)
             }
             DRINK ->{
-
+                textAction.text = resources.getString(R.string.lemon_drink)
+                lemonImage?.setImageResource(R.drawable.lemon_drink)
             }
             RESTART ->{
-
+                textAction.text = resources.getString(R.string.lemon_empty_glass)
+                lemonImage?.setImageResource(R.drawable.lemon_restart)
             }
         }
     }
